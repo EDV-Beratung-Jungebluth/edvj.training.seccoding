@@ -1,0 +1,2 @@
+https://stackoverflow.com/questions/50657232/how-to-call-api-with-antiforgerytoken-using-postman-in-identityserver-asp-net-co
+

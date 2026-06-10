@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MeineDaten>
+  <Kunden>
+    <Kunde id="1">
+      <Adresse>
+        <Strasse>Musterstrasse 1</Strasse>
+      </Adresse>
+      <Namen>Herbert</Namen>
+    </Kunde>
+    <Kunde id="1">
+      <BadNode></BadNode>
+      <Adresse>
+        <Postfach>1243</Postfach>
+      </Adresse>
+      <Namen>Otto</Namen>
+    </Kunde>
+  </Kunden>
+</MeineDaten>

@@ -1,0 +1,5 @@
+rfc7519
+https://stackoverflow.com/questions/40281050/jwt-authentication-for-asp-net-web-api
+https://medium.com/@mmoshikoo/jwt-authentication-using-c-54e0c71f21b0
+https://jwt.io/
+https://github.com/cuongle/WebApi.Jwt

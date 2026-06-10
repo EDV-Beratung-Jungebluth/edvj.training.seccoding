@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Views\Home\Index2.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Views\Home\Index2.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HtmlSanitizer.NetCore3.1" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>

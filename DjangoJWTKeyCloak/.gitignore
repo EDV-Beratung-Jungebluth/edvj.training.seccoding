@@ -1,0 +1,23 @@
+# Virtuelle Umgebungen
+.venv/
+venv/
+env/
+
+# Django
+*.pyc
+__pycache__/
+db.sqlite3
+staticfiles/
+media/
+
+# Secrets – niemals einchecken (A04: Cryptographic Failures)
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Logs
+*.log
+logs/

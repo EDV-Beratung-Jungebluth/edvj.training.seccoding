@@ -1,0 +1,16 @@
+Fiddler starten
+
+TestWebAPI-Projekt öffnen
+
+
+[Authorize] auskommentiert
+Controller/ValuesController
+
+https://localhost:44396/swagger/ui/index
+Values
+
+Get(int id)
+ 5
+ <script>alert(5);</script>
+
+[Authorize] nicht auskommentiert

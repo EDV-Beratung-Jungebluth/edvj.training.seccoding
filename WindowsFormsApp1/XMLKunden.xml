@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Daten>
+  <Kunden>
+    <Kunde id="1" >
+      <Adresse>
+        <Strasse>Hauptstrasse 24</Strasse>>
+      </Adresse>
+      <NachNamen>Huber</NachNamen>
+    </Kunde>
+    <Kunde id="2" >
+      <Adresse>
+        <Strasse>Marktstrasse 8</Strasse>>
+      </Adresse>
+      <NachNamen>Krüger</NachNamen>
+      <Postfach>12343</Postfach>
+    </Kunde>
+  </Kunden>
+</Daten>

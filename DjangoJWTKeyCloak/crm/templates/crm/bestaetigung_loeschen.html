@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Löschen bestätigen{% endblock %}
+
+{% block inhalt %}
+<h1>Löschen bestätigen</h1>
+
+<div class="karte">
+    <p>Möchten Sie <strong>{{ object }}</strong> wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.</p>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-gefahr">Ja, löschen</button>
+        <a href="javascript:history.back()" class="btn btn-sekundaer">Abbrechen</a>
+    </form>
+</div>
+{% endblock %}

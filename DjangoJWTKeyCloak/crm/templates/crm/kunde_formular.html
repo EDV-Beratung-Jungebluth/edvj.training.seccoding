@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}{% if object %}Kunde bearbeiten{% else %}Neuer Kunde{% endif %}{% endblock %}
+
+{% block inhalt %}
+<a href="{% url 'kunde-liste' %}" class="zurueck">← Zurück zur Liste</a>
+<h1>{% if object %}Kunde bearbeiten{% else %}Neuen Kunden anlegen{% endif %}</h1>
+
+<div class="karte">
+    <form method="post">
+        {% csrf_token %}
+        {% for feld in form %}
+        <div class="formular-gruppe">
+            <label for="{{ feld.id_for_label }}">{{ feld.label }}</label>
+            {{ feld }}
+            {% if feld.errors %}
+                <div class="fehler-text">{{ feld.errors|join:", " }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primaer">Speichern</button>
+        <a href="{% url 'kunde-liste' %}" class="btn btn-sekundaer">Abbrechen</a>
+    </form>
+</div>
+{% endblock %}

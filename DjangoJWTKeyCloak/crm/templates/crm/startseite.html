@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Startseite{% endblock %}
+
+{% block inhalt %}
+<h1>Willkommen im CRM-Demo</h1>
+
+<div class="karte">
+    <p>Angemeldet als <strong>{{ request.user.username }}</strong>
+    {% for gruppe in request.user.groups.all %}
+        mit Rolle <strong>{{ gruppe.name }}</strong>
+    {% endfor %}
+    </p>
+</div>
+
+<div class="statistik-gitter">
+    <div class="statistik-karte">
+        <div class="statistik-zahl">{{ kunden_anzahl }}</div>
+        <div class="statistik-label">Kunden</div>
+    </div>
+    <div class="statistik-karte">
+        <div class="statistik-zahl">{{ artikel_anzahl }}</div>
+        <div class="statistik-label">Artikel</div>
+    </div>
+    <div class="statistik-karte">
+        <div class="statistik-zahl">{{ auftraege_anzahl }}</div>
+        <div class="statistik-label">Aufträge</div>
+    </div>
+</div>
+{% endblock %}

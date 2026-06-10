@@ -1,0 +1,14 @@
+
+https://localhost:44396/swagger/ui/index#!/Account/Account_Register
+
+{
+ "EMail":"Volker@Jungebluth.de",
+ "Password":"hallo123",
+ "ConfirmPassword":"hallo123"
+}
+
+{
+ "EMail":"Volker@Jungebluth.de",
+ "Password":"Hallo!123",
+ "ConfirmPassword":"Hallo!123"
+}

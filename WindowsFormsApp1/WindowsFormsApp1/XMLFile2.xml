@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE bookstore [
+  <!ENTITY xxe SYSTEM "file://C:\Windows\System32\calc.exe">
+]>
+<bookstore>
+  <book>
+    <title lang="en">Origin</title>
+    <author>Dan Brown</author>
+    <year>2017</year>
+  </book>
+  <book>
+    <title lang="de">Der Fremde</title>
+    <author>Albert Camus</author>
+    <year>&xxe;</year>
+  </book>
+</bookstore>

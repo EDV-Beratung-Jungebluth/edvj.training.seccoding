@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}{{ kunde.name }}{% endblock %}
+
+{% block inhalt %}
+<a href="{% url 'kunde-liste' %}" class="zurueck">← Zurück zur Liste</a>
+<h1>{{ kunde.name }}</h1>
+
+<div class="karte">
+    <table>
+        <tr><th style="width:150px">E-Mail</th><td>{{ kunde.email }}</td></tr>
+        <tr><th>Telefon</th><td>{{ kunde.telefon|default:"–" }}</td></tr>
+        <tr><th>Adresse</th><td>{{ kunde.adresse|linebreaksbr|default:"–" }}</td></tr>
+        <tr><th>Erstellt am</th><td>{{ kunde.erstellt_am|date:"d.m.Y H:i" }}</td></tr>
+    </table>
+</div>
+
+<h2>Aufträge</h2>
+<div class="karte">
+    <table>
+        <thead><tr><th>Nr.</th><th>Datum</th><th>Status</th><th>Gesamt</th><th></th></tr></thead>
+        <tbody>
+            {% for auftrag in kunde.auftraege.all %}
+            <tr>
+                <td>#{{ auftrag.pk }}</td>
+                <td>{{ auftrag.auftragsdatum|date:"d.m.Y" }}</td>
+                <td><span class="status-{{ auftrag.status }}">{{ auftrag.get_status_display }}</span></td>
+                <td>{{ auftrag.gesamtbetrag|floatformat:2 }} €</td>
+                <td><a href="{% url 'auftrag-detail' auftrag.pk %}" class="btn btn-sekundaer btn-klein">Details</a></td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5">Keine Aufträge vorhanden.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% for gruppe in user.groups.all %}
+    {% if gruppe.name == "Schreiber" %}
+        <div class="aktionen">
+            <a href="{% url 'kunde-bearbeiten' kunde.pk %}" class="btn btn-sekundaer">Bearbeiten</a>
+            <a href="{% url 'kunde-loeschen' kunde.pk %}" class="btn btn-gefahr">Löschen</a>
+        </div>
+    {% endif %}
+{% endfor %}
+{% endblock %}

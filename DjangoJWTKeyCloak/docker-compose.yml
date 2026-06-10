@@ -1,0 +1,28 @@
+# Docker Compose für Keycloak (Demo-Umgebung)
+# SICHERHEIT: Credentials kommen aus .env (A02/A04)
+# HINWEIS: 'start-dev' und H2-DB nur für Entwicklung. Produktion: 'start' + Postgres.
+
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0.7
+    # Realm wird beim Start automatisch importiert (--import-realm)
+    command: start-dev --import-realm
+    environment:
+      # SICHERHEIT: Admin-Credentials aus .env lesen (A02)
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KC_BOOTSTRAP_ADMIN_USERNAME:-admin}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KC_BOOTSTRAP_ADMIN_PASSWORD:-admin}
+      KC_HTTP_PORT: 8080
+      KC_HOSTNAME_STRICT: "false"
+      KC_HOSTNAME_STRICT_HTTPS: "false"
+      KC_HTTP_ENABLED: "true"
+    ports:
+      - "8080:8080"
+    volumes:
+      # Realm-Export wird beim Start importiert
+      - ./keycloak:/opt/keycloak/data/import
+    healthcheck:
+      test: ["CMD-SHELL", "exec 3<>/dev/tcp/localhost/8080 && echo -e 'GET /health/ready HTTP/1.1\\r\\nHost: localhost\\r\\n\\r\\n' >&3 && cat <&3 | grep -q '200 OK'"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 30s

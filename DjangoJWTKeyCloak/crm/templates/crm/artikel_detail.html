@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}{{ artikel.bezeichnung }}{% endblock %}
+
+{% block inhalt %}
+<a href="{% url 'artikel-liste' %}" class="zurueck">← Zurück zur Liste</a>
+<h1>{{ artikel.bezeichnung }}</h1>
+
+<div class="karte">
+    <table>
+        <tr><th style="width:150px">Artikelnummer</th><td>{{ artikel.artikelnummer }}</td></tr>
+        <tr><th>Beschreibung</th><td>{{ artikel.beschreibung|default:"–" }}</td></tr>
+        <tr><th>Preis</th><td>{{ artikel.preis|floatformat:2 }} €</td></tr>
+        <tr><th>Bestand</th><td>{{ artikel.bestand }} Stück</td></tr>
+    </table>
+</div>
+
+{% for gruppe in user.groups.all %}
+    {% if gruppe.name == "Schreiber" %}
+        <div class="aktionen">
+            <a href="{% url 'artikel-bearbeiten' artikel.pk %}" class="btn btn-sekundaer">Bearbeiten</a>
+            <a href="{% url 'artikel-loeschen' artikel.pk %}" class="btn btn-gefahr">Löschen</a>
+        </div>
+    {% endif %}
+{% endfor %}
+{% endblock %}

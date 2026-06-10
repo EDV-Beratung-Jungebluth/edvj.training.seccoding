@@ -1,0 +1,57 @@
+The completely ridiculous API (crAPI)
+
+The completely ridiculous API,  is the vulnerable API
+developed and released by the OWASP API Security Project. 
+The crAPI vulnerable API was designed to
+demonstrate the most critical API vulnerabilities.
+
+
+https://github.com/OWASP/crAPI/ - The completely ridiculous API (crAPI)
+
+curl.exe -o docker-compose.yml https://raw.githubusercontent.com/OWASP/crAPI/main/deploy/docker/docker-compose.yml
+
+docker-compose pull
+
+docker-compose -f docker-compose.yml --compatibility up -d
+
+
+-- 
+
+Pixi
+
+Pixi is a MongoDB, Express.js, Angular, Node (MEAN) stack web application
+that was designed with deliberately vulnerable APIs
+It was created at OWASP DevSlop, an OWASP incubator project that highlights
+DevOps-related mistakes, by Nicole Becher, Nancy Gariché, Mordecai
+Kraushar, and Tanya Janca.
+You can think of the Pixi application as a social media platform with a
+virtual payment system. As an attacker, you’ll find Pixi’s user information,
+administrative functionality, and payment system especially interesting.
+
+
+
+git clone https://github.com/DevSlop/Pixi.git
+cd Pixi
+docker-compose up
+
+---
+
+OWASP Juice Shop
+
+OWASP Juice Shop,  is an OWASP flagship project created
+by Björn Kimminich. It’s designed to include vulnerabilities from both
+Setting Up Vulnerable API Targets 113
+the OWASP Top 10 and OWASP API Security Top 10. One awesome feature
+found in Juice Shop is that it tracks your hacking progress and includes
+a hidden scoreboard. Juice Shop was built using Node.js, Express, and
+Angular. It is a JavaScript application powered by REST APIs.
+Figure 5-3: The OWASP Juice Shop
+Of all the applications we’ll install, Juice Shop is currently the most supported,
+with over 70 contributors. 
+
+To download and launch Juice Shop, run
+the following commands:
+
+docker pull bkimminich/juice-shop
+
+docker run --rm -p 80:3000 bkimminich/juice-shop

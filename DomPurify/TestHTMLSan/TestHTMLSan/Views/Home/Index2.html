@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML Sanitization Example</title>
+</head>
+<body>
+    <h1>HTML Sanitization Example</h1>
+
+    <div id="output">
+        <!-- Bereinigter HTML-Code wird hier eingefügt -->
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.3/purify.min.js"></script>
+
+    <script>
+
+
+       // Dein unsicherer HTML-String
+const dirty = '<script>alert('XSS');</script><p>Hi!</p>';
+
+
+// Säubern
+const clean = DOMPurify.sanitize(dirty);
+
+// Das bereinigte HTML in die Seite einfügen
+document.getElementById('output').innerHTML = clean;
+
+    </script>
+</body>
+</html>

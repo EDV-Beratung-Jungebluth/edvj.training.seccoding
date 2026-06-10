@@ -1,0 +1,122 @@
+{
+  "realm": "demo",
+  "enabled": true,
+  "displayName": "CRM-Demo",
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": false,
+  "editUsernameAllowed": false,
+  "bruteForceProtected": true,
+  "accessTokenLifespan": 900,
+  "ssoSessionIdleTimeout": 1800,
+  "ssoSessionMaxLifespan": 36000,
+  "roles": {
+    "realm": [
+      {
+        "name": "app-reader",
+        "description": "Lesezugriff auf CRM-Daten",
+        "composite": false,
+        "clientRole": false
+      },
+      {
+        "name": "app-writer",
+        "description": "Lese- und Schreibzugriff auf CRM-Daten",
+        "composite": false,
+        "clientRole": false
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "django-app",
+      "name": "Django CRM Demo",
+      "description": "Django-Webanwendung mit Keycloak OIDC",
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "django-demo-secret-aendern-in-produktion",
+      "redirectUris": [
+        "http://localhost:8125/*",
+        "http://127.0.0.1:8125/*"
+      ],
+      "webOrigins": [
+        "http://localhost:8125",
+        "http://127.0.0.1:8125"
+      ],
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "publicClient": false,
+      "protocol": "openid-connect",
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "access.token.lifespan": "900",
+        "post.logout.redirect.uris": "http://localhost:8125/*##http://127.0.0.1:8125/*"
+      },
+      "protocolMappers": [
+        {
+          "name": "realm-roles-mapper",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-realm-role-mapper",
+          "consentRequired": false,
+          "config": {
+            "multivalued": "true",
+            "claim.name": "realm_access.roles",
+            "jsonType.label": "String",
+            "access.token.claim": "true",
+            "id.token.claim": "true",
+            "userinfo.token.claim": "true"
+          }
+        },
+        {
+          "name": "audience-mapper",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "django-app",
+            "included.custom.audience": "account",
+            "access.token.claim": "true",
+            "id.token.claim": "false"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "reader",
+      "email": "reader@demo.local",
+      "firstName": "Lese",
+      "lastName": "Benutzer",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "reader123",
+          "temporary": false
+        }
+      ],
+      "realmRoles": ["app-reader"]
+    },
+    {
+      "username": "writer",
+      "email": "writer@demo.local",
+      "firstName": "Schreib",
+      "lastName": "Benutzer",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "writer123",
+          "temporary": false
+        }
+      ],
+      "realmRoles": ["app-writer"]
+    }
+  ]
+}

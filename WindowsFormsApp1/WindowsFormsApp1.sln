@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TryXMLBomb", "WindowsFormsApp1\TryXMLBomb.csproj", "{28B29682-1EA5-45DE-8AFB-8B258B665958}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{869B5DCE-6D70-42A8-A91F-580BDB070A86}"
+	ProjectSection(SolutionItems) = preProject
+		XMLKunden.xml = XMLKunden.xml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{28B29682-1EA5-45DE-8AFB-8B258B665958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28B29682-1EA5-45DE-8AFB-8B258B665958}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28B29682-1EA5-45DE-8AFB-8B258B665958}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28B29682-1EA5-45DE-8AFB-8B258B665958}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6623E5A2-7483-4F7F-96EE-E9BFB545C488}
+	EndGlobalSection
+EndGlobal

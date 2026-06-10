@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Artikel{% endblock %}
+
+{% block inhalt %}
+<h1>Artikel</h1>
+
+{% for gruppe in user.groups.all %}
+    {% if gruppe.name == "Schreiber" %}
+        <a href="{% url 'artikel-erstellen' %}" class="btn btn-primaer" style="margin-bottom:1rem;">+ Neuer Artikel</a>
+    {% endif %}
+{% endfor %}
+
+<div class="karte">
+    <table>
+        <thead>
+            <tr><th>Artikelnummer</th><th>Bezeichnung</th><th>Preis</th><th>Bestand</th><th>Aktionen</th></tr>
+        </thead>
+        <tbody>
+            {% for artikel in artikel_liste %}
+            <tr>
+                <td>{{ artikel.artikelnummer }}</td>
+                <td><a href="{% url 'artikel-detail' artikel.pk %}">{{ artikel.bezeichnung }}</a></td>
+                <td>{{ artikel.preis|floatformat:2 }} €</td>
+                <td>{{ artikel.bestand }}</td>
+                <td class="aktionen">
+                    <a href="{% url 'artikel-detail' artikel.pk %}" class="btn btn-sekundaer btn-klein">Details</a>
+                    {% for gruppe in user.groups.all %}
+                        {% if gruppe.name == "Schreiber" %}
+                            <a href="{% url 'artikel-bearbeiten' artikel.pk %}" class="btn btn-sekundaer btn-klein">Bearbeiten</a>
+                            <a href="{% url 'artikel-loeschen' artikel.pk %}" class="btn btn-gefahr btn-klein">Löschen</a>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5">Keine Artikel vorhanden.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

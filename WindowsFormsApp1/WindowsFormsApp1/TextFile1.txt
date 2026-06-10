@@ -1,0 +1,2 @@
+﻿https://www.securai.de/veroeffentlichungen/blog/xxe-angriff-ueber-ein-serialisierungsformat/
+https://en.wikipedia.org/wiki/Billion_laughs_attack
