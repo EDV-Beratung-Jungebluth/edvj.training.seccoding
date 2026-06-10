@@ -1,0 +1,165 @@
+- Nikto v2.5.0
+---------------------------------------------------------------------------
++ Target IP:          192.168.65.254
++ Target Hostname:    host.docker.internal
++ Target Port:        3000
++ Start Time:         2026-06-09 15:56:59 (GMT0)
+---------------------------------------------------------------------------
++ Server: No banner retrieved
++ /: Retrieved access-control-allow-origin header: *.
++ /:X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive instead. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
++ /: Uncommon header(s) 'x-recruiting' found, with contents: /#/jobs.
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ /robots.txt: Entry '/ftp/' is returned a non-forbidden or redirect HTTP code (200). See: https://portswigger.net/kb/issues/00600600_robots-txt-file
++ /robots.txt: contains 1 entry which should be manually viewed. See: https://developer.mozilla.org/en-US/docs/Glossary/Robots.txt
++ /archive.tar.bz2: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /database.tgz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /site.tar: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /192.168.65.254.tar: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /192.168.65.254.egg: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /internal.tar.lzma: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /database.pem: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /archive.alz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.docker.cer: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /192.168.65.254.jks: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /hostdocker.jks: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /docker.tar.lzma: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /docker.pem: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /internal.egg: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host_docker_internal.tar.bz2: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /site.jks: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /site.tgz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.docker.internal.tar.bz2: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host_docker_internal.pem: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /internal.tar: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /192.168.65.254.pem: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /archive.war: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.docker.internal.tar: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /database.jks: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /docker.tgz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /docker.tar.bz2: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /dump.egg: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /dump.tar.bz2: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /docker.jks: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /hostdocker.tar: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /hostdocker.egg: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.egg: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.tar.bz2: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /archive.egg: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.docker.internal.cer: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.docker.internal.egg: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.tar: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /archive.tar: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /dump.tar: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.docker.jks: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /dump.jks: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.docker.internal.pem: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /dump.tgz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /backup.tar: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /docker.cer: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /archive.jks: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.docker.war: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.jks: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.tgz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /database.war: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /backup.war: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /docker.egg: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /database.tar.bz2: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host_docker_internal.tar: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.docker.tgz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /hostdockerinternal.tar: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /hostdocker.alz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /archive.pem: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /archive.cer: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /192.168.65.254.cer: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /192.168.65.254.alz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /internal.cer: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /internal.alz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /backup.alz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /hostdocker.tar.bz2: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host_docker_internal.egg: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /hostdockerinternal.war: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host_docker_internal.cer: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /hostdocker.war: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /hostdockerinternal.cer: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.docker.tar.lzma: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /site.egg: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /site.tar.bz2: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /hostdocker.tgz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /site.tar.lzma: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /backup.jks: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /hostdocker.pem: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.docker.alz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /hostdockerinternal.tar.lzma: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.alz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /backup.tar.bz2: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /database.alz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /backup.tgz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /dump.alz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /hostdocker.tar.lzma: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /database.cer: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /hostdockerinternal.tar.bz2: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.docker.tar: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /192.168.65.254.war: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /internal.tar.bz2: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /internal.war: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /hostdockerinternal.egg: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.docker.internal.tgz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /backup.tar.lzma: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /backup.pem: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host_docker_internal.alz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /site.war: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /site.cer: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.pem: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /dump.pem: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.docker.internal.war: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /hostdockerinternal.pem: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /archive.tar.lzma: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /192.168.65.254.tgz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host_docker_internal.jks: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.docker.egg: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /dump.tar.lzma: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.docker.internal.tar.lzma: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.tar.lzma: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.docker.pem: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /site.alz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /archive.tgz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /internal.jks: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /docker.alz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host_docker_internal.tar.lzma: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host_docker_internal.tgz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /docker.tar: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /192.168.65.254.tar.lzma: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /backup.cer: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.docker.internal.alz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /database.egg: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /hostdocker.cer: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /hostdockerinternal.alz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /backup.egg: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /database.tar: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /docker.war: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.docker.tar.bz2: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.docker.internal.jks: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /hostdockerinternal.jks: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /internal.tgz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /192.168.65.254.tar.bz2: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.cer: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /site.pem: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /hostdockerinternal.tgz: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host.war: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /host_docker_internal.war: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /database.tar.lzma: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /dump.cer: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /internal.pem: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /dump.war: Potentially interesting backup/cert file found. . See: https://cwe.mitre.org/data/definitions/530.html
++ /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security
++ /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy
++ /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
++ /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy
++ ERROR: Error limit (20) reached for host, giving up. Last error: error reading HTTP response
+- STATUS: Completed 1373 requests (~20% complete, 14.1 minutes left): currently in plugin 'Nikto Tests'
+- STATUS: Running average: Not enough data.
++ Scan terminated: 20 error(s) and 149 item(s) reported on remote host
++ End Time:           2026-06-09 16:00:25 (GMT0) (206 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested

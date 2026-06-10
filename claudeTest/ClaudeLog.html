@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OWASP Top 10 Pentest – Session-Log (Juice Shop @ localhost:3000)</title>
+<style>
+  :root{
+    --bg:#0f172a; --bg2:#1e293b; --card:#ffffff; --ink:#1e293b; --muted:#64748b;
+    --line:#e2e8f0; --accent:#6366f1; --accent2:#8b5cf6;
+    --ok:#16a34a; --okbg:#f0fdf4; --okbd:#bbf7d0;
+    --warn:#d97706; --warnbg:#fffbeb; --warnbd:#fde68a;
+    --crit:#dc2626; --critbg:#fef2f2; --critbd:#fecaca;
+    --info:#0284c7; --infobg:#f0f9ff; --infobd:#bae6fd;
+    --code:#0f172a; --codeink:#e2e8f0;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+    background:linear-gradient(135deg,#f1f5f9 0%,#e2e8f0 100%);
+    color:var(--ink); line-height:1.6; font-size:15px;
+  }
+  header{
+    background:linear-gradient(135deg,var(--bg) 0%,#312e81 100%);
+    color:#fff; padding:40px 32px; box-shadow:0 4px 20px rgba(0,0,0,.25);
+  }
+  header h1{margin:0 0 8px; font-size:1.9rem; letter-spacing:-.5px}
+  header .sub{color:#c7d2fe; font-size:1.05rem}
+  header .meta{margin-top:18px; display:flex; flex-wrap:wrap; gap:10px}
+  .chip{
+    background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2);
+    padding:5px 12px; border-radius:999px; font-size:.82rem; color:#e0e7ff;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:32px 24px 80px}
+
+  .toc{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:20px 26px; margin-bottom:32px; box-shadow:0 1px 3px rgba(0,0,0,.06);
+  }
+  .toc h2{margin:0 0 12px; font-size:1.05rem; color:var(--muted); text-transform:uppercase; letter-spacing:1px}
+  .toc ol{margin:0; padding-left:20px; columns:2; column-gap:40px}
+  .toc a{color:var(--accent); text-decoration:none; font-weight:500}
+  .toc a:hover{text-decoration:underline}
+
+  section.phase{
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    margin-bottom:28px; box-shadow:0 1px 3px rgba(0,0,0,.06); overflow:hidden;
+  }
+  .phase-head{
+    display:flex; align-items:center; gap:14px;
+    padding:18px 26px; background:linear-gradient(90deg,#eef2ff,#faf5ff);
+    border-bottom:1px solid var(--line);
+  }
+  .phase-num{
+    flex:none; width:42px; height:42px; border-radius:11px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:#fff; font-weight:700; font-size:1.1rem;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 4px 10px rgba(99,102,241,.35);
+  }
+  .phase-head h2{margin:0; font-size:1.25rem}
+  .phase-body{padding:20px 26px}
+
+  h3{font-size:1.05rem; margin:22px 0 10px; color:var(--bg)}
+  p{margin:10px 0}
+  ul{margin:10px 0; padding-left:22px}
+  li{margin:5px 0}
+
+  .speech{
+    border-left:3px solid var(--accent); background:#fafaff;
+    padding:10px 16px; margin:14px 0; border-radius:0 8px 8px 0; color:#334155;
+  }
+
+  .box{border-radius:10px; padding:14px 18px; margin:16px 0; border:1px solid}
+  .box .t{font-weight:700; display:flex; align-items:center; gap:8px; margin-bottom:4px}
+  .box.warn{background:var(--warnbg); border-color:var(--warnbd); color:#92400e}
+  .box.crit{background:var(--critbg); border-color:var(--critbd); color:#991b1b}
+  .box.ok{background:var(--okbg); border-color:var(--okbd); color:#166534}
+  .box.info{background:var(--infobg); border-color:var(--infobd); color:#075985}
+
+  pre{
+    background:var(--code); color:var(--codeink); border-radius:10px;
+    padding:14px 16px; overflow-x:auto; font-size:.86rem; line-height:1.5;
+    font-family:'Cascadia Code','Consolas',monospace; margin:14px 0;
+  }
+  code.inline{
+    background:#eef2ff; color:#4338ca; padding:1px 6px; border-radius:5px;
+    font-family:'Cascadia Code','Consolas',monospace; font-size:.85em;
+  }
+
+  table{border-collapse:collapse; width:100%; margin:16px 0; font-size:.9rem}
+  th,td{border:1px solid var(--line); padding:9px 12px; text-align:left; vertical-align:top}
+  th{background:#f8fafc; font-weight:600; color:#334155}
+  tbody tr:nth-child(even){background:#fbfcfe}
+
+  .sev{display:inline-block; padding:2px 9px; border-radius:6px; font-size:.78rem; font-weight:700; white-space:nowrap}
+  .sev.crit{background:var(--critbg); color:var(--crit); border:1px solid var(--critbd)}
+  .sev.warn{background:var(--warnbg); color:var(--warn); border:1px solid var(--warnbd)}
+  .sev.info{background:var(--infobg); color:var(--info); border:1px solid var(--infobd)}
+  .sev.ok{background:var(--okbg); color:var(--ok); border:1px solid var(--okbd)}
+  .tag{display:inline-block; background:#ede9fe; color:#6d28d9; padding:1px 8px; border-radius:5px; font-size:.78rem; font-weight:600; margin:1px}
+
+  footer{text-align:center; color:var(--muted); font-size:.85rem; padding:30px}
+</style>
+</head>
+<body>
+<header>
+  <h1>🔐 OWASP Top 10 – Penetrationstest-Log</h1>
+  <div class="sub">Black-Box-Test gegen <strong>OWASP Juice Shop v20.0.0</strong> @ http://localhost:3000</div>
+  <div class="meta">
+    <span class="chip">📅 Session-Verlauf</span>
+    <span class="chip">🎯 OWASP Top 10 (2017 &amp; 2025)</span>
+    <span class="chip">🖥️ Node.js / Express</span>
+    <span class="chip">🔍 Black-Box</span>
+    <span class="chip">🧪 Automatisiert + Manuell</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <nav class="toc">
+    <h2>Inhalt</h2>
+    <ol>
+      <li><a href="#anfrage">Anfrage &amp; Rahmenbedingungen</a></li>
+      <li><a href="#plan">Testplan (OWASP-Mapping)</a></li>
+      <li><a href="#phase0">Phase 0 – Vorbereitung &amp; Tooling</a></li>
+      <li><a href="#phase1">Phase 1 – Recon-Befunde</a></li>
+      <li><a href="#tools">Tool-Installation</a></li>
+      <li><a href="#scan">Automatisierte Scans (nuclei / nikto)</a></li>
+      <li><a href="#crash">Nebenbefund: App-Absturz</a></li>
+      <li><a href="#next">Nächste Schritte</a></li>
+    </ol>
+  </nav>
+
+  <!-- ANFRAGE -->
+  <section class="phase" id="anfrage">
+    <div class="phase-head"><div class="phase-num">📨</div><h2>Anfrage &amp; Rahmenbedingungen</h2></div>
+    <div class="phase-body">
+      <div class="speech">
+        „Erzeuge mir einen Plan zum Testen meiner Web-Anwendung unter <code class="inline">http://localhost:3000</code>.
+        Ich möchte die Anwendung auf Verwundbarkeiten gemäß OWASP Top Ten 2017 und 2025 testen."
+      </div>
+      <p>Vorab geklärte Eckdaten, die den Plan maßgeblich prägen:</p>
+      <table>
+        <thead><tr><th>Frage</th><th>Antwort</th></tr></thead>
+        <tbody>
+          <tr><td>Liegt Quellcode vor?</td><td><span class="sev warn">Nur Black-Box</span> – <code class="inline">C:\_training\claudeTest</code> ist leer</td></tr>
+          <tr><td>Technologie-Stack?</td><td>Node.js / Express (Port 3000)</td></tr>
+          <tr><td>Vorgehen?</td><td>Automatisiert + manuell (empfohlen)</td></tr>
+          <tr><td>Authentifizierung / Test-Accounts?</td><td>Ein Account vorhanden</td></tr>
+        </tbody>
+      </table>
+      <div class="box warn">
+        <div class="t">⚠️ Autorisierung / Rules of Engagement</div>
+        Plan gilt ausschließlich für die lokale, selbst betriebene Anwendung auf <code class="inline">localhost</code>.
+        Keine Tests gegen fremde Systeme. Vor destruktiven Tests (sqlmap, Active Scan) ein DB-Backup/Snapshot anlegen,
+        da aktive Scans Daten verändern/löschen können.
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAN -->
+  <section class="phase" id="plan">
+    <div class="phase-head"><div class="phase-num">📋</div><h2>Testplan – OWASP-Mapping 2017 ↔ 2025</h2></div>
+    <div class="phase-body">
+      <table>
+        <thead><tr><th>2017</th><th>2025</th><th>Black-Box-Testbarkeit</th></tr></thead>
+        <tbody>
+          <tr><td>A1 Injection</td><td>A05 Injection (inkl. XSS, XXE)</td><td><span class="sev ok">Voll testbar</span></td></tr>
+          <tr><td>A2 Broken Authentication</td><td>A07 Authentication Failures</td><td><span class="sev ok">Voll testbar</span></td></tr>
+          <tr><td>A3 Sensitive Data Exposure</td><td>A04 Cryptographic Failures</td><td><span class="sev warn">Teilweise</span></td></tr>
+          <tr><td>A4 XML External Entities</td><td>→ in A05 Injection</td><td><span class="sev warn">Nur bei XML-Endpunkten</span></td></tr>
+          <tr><td>A5 Broken Access Control</td><td>A01 Broken Access Control (inkl. SSRF)</td><td><span class="sev warn">Eingeschränkt (1 Account)</span></td></tr>
+          <tr><td>A6 Security Misconfiguration</td><td>A02 Security Misconfiguration</td><td><span class="sev ok">Voll testbar</span></td></tr>
+          <tr><td>A7 Cross-Site Scripting</td><td>→ in A05 Injection</td><td><span class="sev ok">Voll testbar</span></td></tr>
+          <tr><td>A8 Insecure Deserialization</td><td>A08 Software/Data Integrity Failures</td><td><span class="sev warn">Teilweise</span></td></tr>
+          <tr><td>A9 Known Vulnerable Components</td><td>A03 Software Supply Chain Failures</td><td><span class="sev info">Nur via Fingerprinting</span></td></tr>
+          <tr><td>A10 Insufficient Logging</td><td>A09 Security Logging &amp; Alerting Failures</td><td><span class="sev info">Nur indirekt</span></td></tr>
+          <tr><td>— (neu)</td><td>A06 Insecure Design</td><td>Logik-/Designtests</td></tr>
+          <tr><td>— (neu 2025)</td><td>A10 Mishandling of Exceptional Conditions</td><td>Fehlerverhalten / fail-open</td></tr>
+        </tbody>
+      </table>
+      <div class="box info">
+        <div class="t">ℹ️ Black-Box-Limitierungen</div>
+        A03 (Supply Chain) nur eingeschränkt über Fingerprinting ermittelbar (Header, JS-Bundles, exponierte Dateien).
+        A09 (Logging) von außen kaum verifizierbar – prüfbar nur indirekt (Rate-Limiting, Lockout).
+      </div>
+    </div>
+  </section>
+
+  <!-- PHASE 0 -->
+  <section class="phase" id="phase0">
+    <div class="phase-head"><div class="phase-num">0</div><h2>Phase 0 – Vorbereitung &amp; Tooling</h2></div>
+    <div class="phase-body">
+      <table>
+        <thead><tr><th>Zweck</th><th>Tool</th><th>Bezug</th></tr></thead>
+        <tbody>
+          <tr><td>DAST-Scanner + Proxy (Primär)</td><td>OWASP ZAP</td><td><code class="inline">winget install ZAP.ZAP</code></td></tr>
+          <tr><td>Manueller Intercepting-Proxy</td><td>Burp Suite Community</td><td>Alternative zu ZAP</td></tr>
+          <tr><td>Template CVE/Misconfig-Scan</td><td>nuclei</td><td>Docker / ProjectDiscovery</td></tr>
+          <tr><td>Server-Misconfig</td><td>nikto</td><td>via Docker</td></tr>
+          <tr><td>Endpoint-Discovery</td><td>ffuf / gobuster</td><td>Go-Binary</td></tr>
+          <tr><td>SQL-Injection</td><td>sqlmap</td><td>Git-Klon / pip</td></tr>
+          <tr><td>HTTP manuell</td><td>curl / Invoke-WebRequest</td><td>vorhanden</td></tr>
+        </tbody>
+      </table>
+      <h3>Setup-Schritte</h3>
+      <ul>
+        <li>Erreichbarkeit bestätigen: <code class="inline">curl -i http://localhost:3000</code></li>
+        <li>ZAP starten, Browser-Proxy auf ZAP zeigen lassen</li>
+        <li>Authentifizierte Session aufnehmen (Context, Session-Cookie/JWT als Auth-Token)</li>
+        <li>DB-Snapshot/Backup anlegen (vor Active Scan &amp; sqlmap)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PHASE 1 -->
+  <section class="phase" id="phase1">
+    <div class="phase-head"><div class="phase-num">1</div><h2>Phase 1 – Recon &amp; Fingerprinting (Befunde)</h2></div>
+    <div class="phase-body">
+      <div class="box ok">
+        <div class="t">✅ Identifizierte Anwendung</div>
+        <strong>OWASP Juice Shop v20.0.0</strong> (bewusst verwundbare Trainings-App) – bestätigt über
+        <code class="inline">/rest/admin/application-version</code> und Header-Fingerabdruck.
+      </div>
+      <table>
+        <thead><tr><th>#</th><th>Befund</th><th>Beweis</th><th>OWASP 2017 → 2025</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Directory Listing auf <code class="inline">/ftp</code> &amp; <code class="inline">/encryptionkeys</code> – listet <em>incident-support.kdbx</em>, <em>premium.key</em>, <em>jwt.pub</em>, <em>.bak</em>-Dateien</td><td>echtes Listing</td><td><span class="tag">A6→A02</span><span class="tag">A5→A01</span></td></tr>
+          <tr><td>2</td><td>Prometheus <code class="inline">/metrics</code> ohne Auth erreichbar</td><td>text/plain + Counter</td><td><span class="tag">A6→A02</span><span class="tag">A3→A04</span></td></tr>
+          <tr><td>3</td><td>Swagger <code class="inline">/api-docs</code> öffentlich</td><td>301 → /api-docs/</td><td><span class="tag">A6→A02</span></td></tr>
+          <tr><td>4</td><td>Versions-Disclosure <code class="inline">{"version":"20.0.0"}</code></td><td>/rest/admin/application-version</td><td><span class="tag">A9→A03</span></td></tr>
+          <tr><td>5</td><td>CORS-Wildcard <code class="inline">Access-Control-Allow-Origin: *</code></td><td>reflektiert auch evil.example</td><td><span class="tag">A6→A02</span></td></tr>
+          <tr><td>6</td><td>Fehlende Security-Header: keine CSP, keine HSTS; veraltetes Feature-Policy</td><td>Header-Dump</td><td><span class="tag">A6→A02</span></td></tr>
+          <tr><td>7</td><td>Open-Redirect-Endpunkt <code class="inline">/redirect</code> (406 ohne erlaubtes Ziel)</td><td>HTTP 406</td><td><span class="tag">A5→A01</span></td></tr>
+          <tr><td>8</td><td>API ungeschützt lesbar: <code class="inline">/api/Products</code>, <code class="inline">/api/Feedbacks</code>, <code class="inline">/api/Challenges</code> = 200; positiv: <code class="inline">/api/Users</code> = 401</td><td>Statuscodes</td><td><span class="tag">A5→A01</span></td></tr>
+          <tr><td>9</td><td><code class="inline">robots.txt</code> verrät <code class="inline">/ftp</code></td><td>Disallow: /ftp</td><td><span class="sev info">Info</span></td></tr>
+        </tbody>
+      </table>
+      <div class="box info">
+        <div class="t">🔍 Korrekt als False Positive verworfen</div>
+        <code class="inline">/package.json</code>, <code class="inline">/.env</code>, <code class="inline">/.git/HEAD</code> liefern nur die SPA-<em>index.html</em>
+        (Angular-Catch-all), nicht die echten Dateien.
+      </div>
+      <p><strong>Kurzfazit:</strong> Schon der reine read-only Recon-Durchlauf liefert bestätigte Misconfigurations –
+      Schwerpunkt <strong>A02:2025 Security Misconfiguration</strong> und <strong>A01:2025 Broken Access Control</strong>.</p>
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section class="phase" id="tools">
+    <div class="phase-head"><div class="phase-num">🛠️</div><h2>Tool-Installation (Windows 11)</h2></div>
+    <div class="phase-body">
+      <p>Vorhanden: <code class="inline">winget</code>, <code class="inline">docker</code>, <code class="inline">python/pip</code>, <code class="inline">git 2.51</code>.
+      Einschränkung: System-Java 1.8 ist zu alt für ZAP – der ZAP-Installer bringt aber seine eigene JRE mit.</p>
+      <table>
+        <thead><tr><th>Tool</th><th>Version</th><th>Bezugsweg</th><th>Aufruf</th></tr></thead>
+        <tbody>
+          <tr><td>OWASP ZAP</td><td><span class="sev ok">2.17.0</span></td><td>winget (nativ)</td><td><code class="inline">"C:\Program Files\ZAP\Zed Attack Proxy\ZAP.exe"</code></td></tr>
+          <tr><td>nuclei</td><td><span class="sev ok">v3.8.0</span></td><td>Docker</td><td><code class="inline">docker run --rm projectdiscovery/nuclei -u &lt;ziel&gt;</code></td></tr>
+          <tr><td>nikto</td><td><span class="sev ok">2.5.0</span></td><td>Docker (ghcr.io/sullo)</td><td><code class="inline">docker run --rm ghcr.io/sullo/nikto -h &lt;ziel&gt;</code></td></tr>
+          <tr><td>sqlmap</td><td><span class="sev ok">1.10.6</span></td><td>Git-Klon</td><td><code class="inline">python C:\_training\tools\sqlmap\sqlmap.py -u &lt;url&gt;</code></td></tr>
+          <tr><td>curl / git / docker / python</td><td>vorhanden</td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table>
+      <div class="box warn">
+        <div class="t">⚠️ Docker-Ziele: localhost ≠ Host</div>
+        Aus einem Container ist <code class="inline">localhost</code> der Container selbst. Für nuclei/nikto/ZAP-Docker daher
+        <code class="inline">http://host.docker.internal:3000</code> verwenden. Native Tools (ZAP-GUI, sqlmap) nutzen normal <code class="inline">localhost:3000</code>.
+      </div>
+      <h3>Stolpersteine</h3>
+      <ul>
+        <li>nuclei liegt nicht in winget → über offizielles Docker-Image gelöst</li>
+        <li>nikto-Image lag unter anderem Namen → offizielles GHCR-Image <code class="inline">ghcr.io/sullo/nikto</code></li>
+        <li>sqlmap-Klon hing am „Press Enter"-Prompt im Hintergrund → beendet, Klon war bereits erfolgreich</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SCAN -->
+  <section class="phase" id="scan">
+    <div class="phase-head"><div class="phase-num">2</div><h2>Automatisierte Scans – nuclei &amp; nikto</h2></div>
+    <div class="phase-body">
+      <h3>nikto-Auswertung</h3>
+      <div class="box crit">
+        <div class="t">⚠️ ~140 False Positives</div>
+        Sämtliche „Potentially interesting backup/cert file found"-Treffer (<em>/database.tgz</em>, <em>/backup.tar</em>, <em>*.pem</em>, <em>*.war</em> …)
+        existieren nur, weil das Angular-SPA auf jeden Pfad HTTP 200 (index.html) zurückgibt – der bekannte Catch-all-Effekt.
+      </div>
+      <table>
+        <thead><tr><th>Echter Befund</th><th>Zeile</th><th>OWASP</th></tr></thead>
+        <tbody>
+          <tr><td>CORS-Wildcard <code class="inline">Access-Control-Allow-Origin: *</code></td><td>9</td><td><span class="tag">A02</span></td></tr>
+          <tr><td>Fehlende Header: CSP, HSTS, Referrer-Policy, Permissions-Policy</td><td>155–158</td><td><span class="tag">A02</span></td></tr>
+          <tr><td>X-Frame-Options veraltet (→ CSP frame-ancestors)</td><td>10</td><td><span class="tag">A02</span></td></tr>
+          <tr><td>robots.txt verweist auf /ftp (200)</td><td>13</td><td><span class="sev info">Info / A01</span></td></tr>
+        </tbody>
+      </table>
+      <p><em>Fazit nikto:</em> bestätigt Phase 1, bringt keine neuen echten Erkenntnisse – Paradebeispiel für die Notwendigkeit manueller Verifikation.</p>
+
+      <h3>nuclei-Auswertung</h3>
+      <table>
+        <thead><tr><th>Befund</th><th>OWASP</th></tr></thead>
+        <tbody>
+          <tr><td>swagger-api – Swagger-Definition offen unter <code class="inline">/api-docs/swagger.yaml</code> (info)</td><td><span class="tag">A02 Misconfiguration</span></td></tr>
+        </tbody>
+      </table>
+      <div class="box info">
+        <div class="t">ℹ️ Nur 1 Treffer – erwartbar</div>
+        nuclei arbeitet signatur-/CVE-basiert. Die Juice-Shop-Schwachstellen (XSS, SQLi, Broken Access Control, JWT) sind
+        logik- und kontextabhängig und brauchen authentifizierte, gezielte Tests. Das untermauert: <strong>Phase 2 (manuell)</strong> ist der ergiebige Teil.
+      </div>
+    </div>
+  </section>
+
+  <!-- CRASH -->
+  <section class="phase" id="crash">
+    <div class="phase-head"><div class="phase-num">💥</div><h2>Nebenbefund – Anwendung unter Last abgestürzt</h2></div>
+    <div class="phase-body">
+      <div class="box crit">
+        <div class="t">🔴 Resource Exhaustion / DoS-Resilienz</div>
+        <ul style="margin:6px 0">
+          <li>nuclei meldete ab ~65 % „Host 30-mal unresponsive" und brach bei 67 % ab.</li>
+          <li>Host-Port 3000 lauscht danach auf nichts mehr (per <code class="inline">Get-NetTCPConnection</code> bestätigt) – Instanz komplett down, ohne Selbstheilung.</li>
+          <li>Last war moderat (~100–130 Req/s) → Hinweis auf fehlendes Rate-Limiting / fehlende Lastresilienz.</li>
+        </ul>
+        Mapping: <span class="tag">A10:2025 Mishandling of Exceptional Conditions</span> bzw. Verfügbarkeit/DoS-Resilienz.
+      </div>
+      <div class="box warn">
+        <div class="t">🔎 Transparenz-Hinweis</div>
+        Zwischenzeitlich wurde der Docker-Container <code class="inline">cool_mendel</code> (ebenfalls eine Juice Shop) neugestartet –
+        der hat aber kein Host-Port-Mapping (<code class="inline">docker port</code> leer) und ist <strong>nicht</strong> die Instanz auf :3000.
+        Der Neustart war wirkungslos und harmlos. Die echte :3000-Instanz lief als separater Prozess/Forwarding.
+      </div>
+      <h3>Was vom Benutzer gebraucht wird</h3>
+      <ol>
+        <li><strong>App neu starten</strong> – wie ursprünglich gestartet. Tipp: Startbefehl mit <code class="inline">!</code> voranstellen (z.&nbsp;B. <code class="inline">! npm start</code>), dann landet die Ausgabe direkt im Chat.</li>
+        <li>Verraten, <strong>wie die App auf :3000 läuft</strong> (npm/host-Prozess, Container mit Mapping, Forwarding), damit künftige Scans passend gedrosselt werden.</li>
+      </ol>
+      <div class="box ok">
+        <div class="t">✅ Empfehlung für nächsten Lauf</div>
+        Gedrosselte nuclei-Konfiguration, damit die Instanz nicht erneut abstürzt:
+        <pre>docker run --rm projectdiscovery/nuclei \
+  -u http://host.docker.internal:3000 \
+  -rate-limit 20 -c 10 -timeout 10</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT -->
+  <section class="phase" id="next">
+    <div class="phase-head"><div class="phase-num">➡️</div><h2>Nächste Schritte – offen für Phase 2 (manuell + aktiv)</h2></div>
+    <div class="phase-body">
+      <ul>
+        <li>Zugriff auf einzelne Dateien in <code class="inline">/ftp</code> (Path-Traversal an der .bak-403-Sperre vorbei)</li>
+        <li>Open-Redirect-Ausnutzung (<code class="inline">/redirect</code>)</li>
+        <li>SQL/NoSQL-Injection an <code class="inline">/rest/products/search</code> &amp; Login</li>
+        <li>XSS in Such-/Feedback-Feldern</li>
+        <li>JWT-Analyse (<code class="inline">jwt.pub</code> / <code class="inline">alg:none</code>)</li>
+        <li>IDOR über die API</li>
+      </ul>
+      <h3>Ready-to-use-Befehl (Beispiel)</h3>
+      <pre>python C:\_training\tools\sqlmap\sqlmap.py \
+  -u "http://localhost:3000/rest/products/search?q=test" \
+  --batch --level=2</pre>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Generiert aus <code style="color:#475569">ClaudeLog.txt</code> · OWASP Juice Shop v20.0.0 Pentest-Session · localhost:3000
+</footer>
+</body>
+</html>

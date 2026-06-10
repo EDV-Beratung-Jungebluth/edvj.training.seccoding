@@ -1,0 +1,66 @@
+
+                     __     _
+   ____  __  _______/ /__  (_)
+  / __ \/ / / / ___/ / _ \/ /
+ / / / / /_/ / /__/ /  __/ /
+/_/ /_/\__,_/\___/_/\___/_/   v3.8.0
+
+		projectdiscovery.io
+
+[INF] nuclei-templates are not installed, installing...
+[INF] Successfully installed nuclei-templates at /root/nuclei-templates
+[WRN] Found 7 templates with runtime error (use -validate flag for further examination)
+[INF] Current nuclei version: v3.8.0 (latest)
+[INF] Current nuclei-templates version: v10.4.4 (latest)
+[INF] New templates added in latest release: 179
+[INF] Templates loaded for current scan: 7132
+[INF] Executing 7117 signed templates from projectdiscovery/nuclei-templates
+[WRN] Loading 15 unsigned templates for scan. Use with caution.
+[INF] Targets loaded for current scan: 1
+[INF] Templates clustered: 1020 (Reduced 948 Requests)
+[INF] Using Interactsh Server: oast.live
+[0:00:05] | Templates: 7132 | Hosts: 1 | RPS: 106 | Matched: 0 | Errors: 2 | Requests: 566/14457 (3%)
+[0:00:10] | Templates: 7132 | Hosts: 1 | RPS: 121 | Matched: 0 | Errors: 2 | Requests: 1260/14457 (8%)
+[0:00:15] | Templates: 7132 | Hosts: 1 | RPS: 123 | Matched: 0 | Errors: 3 | Requests: 1894/14457 (13%)
+[0:00:20] | Templates: 7132 | Hosts: 1 | RPS: 125 | Matched: 0 | Errors: 5 | Requests: 2554/14457 (17%)
+[0:00:25] | Templates: 7132 | Hosts: 1 | RPS: 131 | Matched: 0 | Errors: 5 | Requests: 3320/14457 (22%)
+[0:00:30] | Templates: 7132 | Hosts: 1 | RPS: 133 | Matched: 0 | Errors: 7 | Requests: 4037/14457 (27%)
+[0:00:35] | Templates: 7132 | Hosts: 1 | RPS: 127 | Matched: 0 | Errors: 7 | Requests: 4492/14457 (31%)
+[0:00:40] | Templates: 7132 | Hosts: 1 | RPS: 122 | Matched: 0 | Errors: 14 | Requests: 4929/14457 (34%)
+[0:00:45] | Templates: 7132 | Hosts: 1 | RPS: 121 | Matched: 0 | Errors: 15 | Requests: 5510/14457 (38%)
+[0:00:50] | Templates: 7132 | Hosts: 1 | RPS: 112 | Matched: 0 | Errors: 23 | Requests: 5681/14457 (39%)
+[0:00:55] | Templates: 7132 | Hosts: 1 | RPS: 107 | Matched: 0 | Errors: 25 | Requests: 5974/14457 (41%)
+[swagger-api] [http] [info] http://host.docker.internal:3000/api-docs/swagger.yaml [paths="/api-docs/swagger.yaml"]
+[0:01:00] | Templates: 7132 | Hosts: 1 | RPS: 108 | Matched: 1 | Errors: 25 | Requests: 6566/14457 (45%)
+[0:01:05] | Templates: 7132 | Hosts: 1 | RPS: 103 | Matched: 1 | Errors: 25 | Requests: 6764/14457 (46%)
+[0:01:10] | Templates: 7132 | Hosts: 1 | RPS: 101 | Matched: 1 | Errors: 25 | Requests: 7110/14457 (49%)
+[0:01:15] | Templates: 7132 | Hosts: 1 | RPS: 95 | Matched: 1 | Errors: 25 | Requests: 7182/14457 (49%)
+[0:01:20] | Templates: 7132 | Hosts: 1 | RPS: 92 | Matched: 1 | Errors: 25 | Requests: 7445/14457 (51%)
+[0:01:25] | Templates: 7132 | Hosts: 1 | RPS: 91 | Matched: 1 | Errors: 25 | Requests: 7796/14457 (53%)
+[0:01:30] | Templates: 7132 | Hosts: 1 | RPS: 86 | Matched: 1 | Errors: 26 | Requests: 7858/14457 (54%)
+[0:01:35] | Templates: 7132 | Hosts: 1 | RPS: 84 | Matched: 1 | Errors: 26 | Requests: 8031/14457 (55%)
+[0:01:40] | Templates: 7132 | Hosts: 1 | RPS: 80 | Matched: 1 | Errors: 26 | Requests: 8111/14457 (56%)
+[0:01:45] | Templates: 7132 | Hosts: 1 | RPS: 77 | Matched: 1 | Errors: 26 | Requests: 8126/14457 (56%)
+[0:01:50] | Templates: 7132 | Hosts: 1 | RPS: 73 | Matched: 1 | Errors: 26 | Requests: 8132/14457 (56%)
+[0:01:55] | Templates: 7132 | Hosts: 1 | RPS: 71 | Matched: 1 | Errors: 26 | Requests: 8224/14457 (56%)
+[0:02:00] | Templates: 7132 | Hosts: 1 | RPS: 69 | Matched: 1 | Errors: 26 | Requests: 8322/14457 (57%)
+[0:02:05] | Templates: 7132 | Hosts: 1 | RPS: 68 | Matched: 1 | Errors: 26 | Requests: 8547/14457 (59%)
+[0:02:10] | Templates: 7132 | Hosts: 1 | RPS: 66 | Matched: 1 | Errors: 26 | Requests: 8613/14457 (59%)
+[0:02:15] | Templates: 7132 | Hosts: 1 | RPS: 68 | Matched: 1 | Errors: 26 | Requests: 9295/14457 (64%)
+[0:02:20] | Templates: 7132 | Hosts: 1 | RPS: 66 | Matched: 1 | Errors: 26 | Requests: 9352/14457 (64%)
+[0:02:25] | Templates: 7132 | Hosts: 1 | RPS: 64 | Matched: 1 | Errors: 26 | Requests: 9370/14457 (64%)
+[0:02:30] | Templates: 7132 | Hosts: 1 | RPS: 62 | Matched: 1 | Errors: 26 | Requests: 9374/14457 (64%)
+[0:02:35] | Templates: 7132 | Hosts: 1 | RPS: 60 | Matched: 1 | Errors: 30 | Requests: 9376/14457 (64%)
+[0:02:40] | Templates: 7132 | Hosts: 1 | RPS: 58 | Matched: 1 | Errors: 81 | Requests: 9416/14457 (65%)
+[0:02:45] | Templates: 7132 | Hosts: 1 | RPS: 57 | Matched: 1 | Errors: 102 | Requests: 9433/14457 (65%)
+[0:02:50] | Templates: 7132 | Hosts: 1 | RPS: 55 | Matched: 1 | Errors: 106 | Requests: 9436/14457 (65%)
+[0:02:55] | Templates: 7132 | Hosts: 1 | RPS: 53 | Matched: 1 | Errors: 110 | Requests: 9438/14457 (65%)
+[0:03:00] | Templates: 7132 | Hosts: 1 | RPS: 52 | Matched: 1 | Errors: 156 | Requests: 9467/14457 (65%)
+[0:03:05] | Templates: 7132 | Hosts: 1 | RPS: 51 | Matched: 1 | Errors: 255 | Requests: 9593/14457 (66%)
+[INF] Skipped host.docker.internal:3000 from target list as found unresponsive 30 times
+[0:03:10] | Templates: 7132 | Hosts: 1 | RPS: 50 | Matched: 1 | Errors: 380 | Requests: 9681/14457 (66%)
+[0:03:15] | Templates: 7132 | Hosts: 1 | RPS: 49 | Matched: 1 | Errors: 390 | Requests: 9686/14457 (66%)
+[0:03:20] | Templates: 7132 | Hosts: 1 | RPS: 48 | Matched: 1 | Errors: 392 | Requests: 9687/14457 (67%)
+[0:03:21] | Templates: 7132 | Hosts: 1 | RPS: 48 | Matched: 1 | Errors: 392 | Requests: 9687/14457 (67%)
+[INF] Scan completed in 3m. 1 matches found.
+[0:03:21] | Templates: 7132 | Hosts: 1 | RPS: 48 | Matched: 1 | Errors: 392 | Requests: 9687/14457 (67%)
