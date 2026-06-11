@@ -87,6 +87,21 @@ class KeycloakOIDCBackend(OIDCAuthenticationBackend):
                 benutzer.username,
             )
 
+    def get_token(self, payload):
+        """
+        Überschrieben, um das id_token in der Session zu speichern.
+
+        mozilla-django-oidc 4.x speichert das id_token nicht selbst – wir
+        benötigen es aber für den RP-Initiated Logout gegen Keycloak
+        (OIDC_OP_LOGOUT_URL_METHOD). Nur der Token-String wird gespeichert,
+        nie der Payload-Inhalt (A09).
+        """
+        token_info = super().get_token(payload)
+        id_token = token_info.get("id_token")
+        if id_token and hasattr(self, "request") and self.request:
+            self.request.session["oidc_id_token"] = id_token
+        return token_info
+
     def get_userinfo(self, access_token, id_token, payload):
         """
         Überschrieben, um Realm-Rollen aus dem Access-Token in die Claims

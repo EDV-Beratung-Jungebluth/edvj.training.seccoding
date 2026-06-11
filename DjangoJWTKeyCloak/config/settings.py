@@ -157,6 +157,12 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 LOGIN_URL = "/oidc/authenticate/"
 
+# RP-Initiated Logout: mozilla-django-oidc 4.x ignoriert OIDC_OP_LOGOUT_ENDPOINT
+# direkt – stattdessen wird diese Funktion aufgerufen, die die vollständige
+# Keycloak-End-Session-URL mit id_token_hint und post_logout_redirect_uri baut.
+# Dadurch wird die Keycloak-SSO-Sitzung korrekt beendet (A07).
+OIDC_OP_LOGOUT_URL_METHOD = "auth_kc.logout_utils.keycloak_logout_url"
+
 # SICHERHEIT: Access-Token-Ablaufprüfung aktivieren (A07)
 OIDC_RENEW_ID_TOKEN_EXPIRY_SECONDS = 900  # 15 Minuten
 
